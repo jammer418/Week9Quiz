@@ -29,9 +29,12 @@ public class HelloApplication extends Application {
                 )
         {
             Gson gson = new Gson();
-            Employee employee = gson.fromJson(jsonReader, Employee.class);
-            System.out.println("Here is one employee named " + employee.getPreferredFullName());
+            EmployeesResponse employeesResponse = gson.fromJson(jsonReader, EmployeesResponse.class);
 
+            for (Employee e: employeesResponse.Employees)
+            {
+                System.out.println("This employee is named " + e.getPreferredFullName());
+            }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
